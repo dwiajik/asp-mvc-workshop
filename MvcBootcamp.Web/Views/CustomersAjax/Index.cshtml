@@ -8,7 +8,7 @@
 
 <div>
     @using (Ajax.BeginForm("Search", "CustomersAjax",
-                                        new AjaxOptions
+                                        new AjaxOptions()
                                         {
                                             InsertionMode = InsertionMode.Replace,
                                             HttpMethod = "GET",
@@ -17,8 +17,8 @@
                                     ))
     {
         <div class="form-group form-control">
-            <input type="text" name="name" />
-            <input type="submit" value="AJAX Search" />
+            <input type="text" name="companyName" />
+            <input class="btn btn-primary" type="submit" value="AJAX Search" />
         </div>
     }
 </div>
@@ -32,8 +32,8 @@
         @foreach (var item in Model)
         {
             <li>
-                @Ajax.ActionLink(item.CustomerID, "Search", new { name = item.CompanyName },
-                    new AjaxOptions
+                @Ajax.ActionLink(item.CustomerID, "Search", new { companyName = item.CompanyName },
+                    new AjaxOptions()
                     {
                         InsertionMode = InsertionMode.Replace,
                         HttpMethod = "GET",
