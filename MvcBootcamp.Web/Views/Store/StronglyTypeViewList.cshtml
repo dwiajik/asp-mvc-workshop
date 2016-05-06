@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MvcBootcamp.Web.Models.Customer>
+
+@*@{
+        Layout = null;
+    }*@
+
+@{
+    ViewBag.Title = "StronglyTypeViewList";
+}
+
+<h2>StronglyTypeViewList</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Company Name
+        </th>
+        <th>
+            City
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.CompanyName
+            </td>
+            <td>
+                @item.City
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.Partial("~/Views/Store/_PartialViewExample.cshtml")
+@{
+    Html.RenderPartial("~/Views/Store/_PartialViewExample.cshtml");
+}

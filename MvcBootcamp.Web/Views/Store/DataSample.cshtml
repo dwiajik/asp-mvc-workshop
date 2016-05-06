@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "DataSample";
+}
+
+<h2>DataSample</h2>
+
+<p>Event: @ViewData["event"]</p>
+<p>Event: @ViewData["place"]</p>
+<hr/>
+<p>Event: @ViewBag.eventbag</p>
+<p>Event: @ViewBag.placebag</p>
+<hr/>
+<ul>
+    @foreach (string s in ViewBag.fckinglist)
+    {
+        <li>Element: @s</li>
+    }
+</ul>
+

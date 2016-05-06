@@ -1,0 +1,24 @@
+﻿<h3>I'm from the other world!</h3>
+<table class="table">
+    <tr>
+        <th>
+            Company Name
+        </th>
+        <th>
+            City
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.CompanyName
+            </td>
+            <td>
+                @item.City
+            </td>
+        </tr>
+    }
+
+</table>

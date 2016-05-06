@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DataAccessLayer.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    @using (Ajax.BeginForm("Search", "CustomersAjax",
+                                        new AjaxOptions
+                                        {
+                                            InsertionMode = InsertionMode.Replace,
+                                            HttpMethod = "GET",
+                                            UpdateTargetId = "div-result"
+                                        }
+                                    ))
+    {
+        <div class="form-group form-control">
+            <input type="text" name="name" />
+            <input type="submit" value="AJAX Search" />
+        </div>
+    }
+</div>
+
+<div id="div-result">
+    No result, goodluck for another search!
+</div>
+
+<div>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @Ajax.ActionLink(item.CustomerID, "Search", new { name = item.CompanyName },
+                    new AjaxOptions
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET",
+                        UpdateTargetId = "div-details"
+                    }
+                )
+            </li>
+        }
+    </ul>
+</div>
+
+<div id="div-details">
+    No details, may the force be with you!
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryajax")
+}
