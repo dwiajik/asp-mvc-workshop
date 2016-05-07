@@ -24,6 +24,7 @@ namespace MvcBootcamp.Web.Controllers
         }
 
         // GET: Customers
+        [AllowAnonymous]
         public ActionResult Index()
         {
             //return View(db.Customers.ToList());
@@ -31,6 +32,7 @@ namespace MvcBootcamp.Web.Controllers
         }
 
         // GET: Customers/Details/5
+        [AllowAnonymous]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -128,6 +130,7 @@ namespace MvcBootcamp.Web.Controllers
         }
 
         // POST: Customers/Delete/5
+        [Authorize(Roles = "Administrators")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
