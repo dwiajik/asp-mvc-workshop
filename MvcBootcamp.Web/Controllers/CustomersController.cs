@@ -59,12 +59,20 @@ namespace MvcBootcamp.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax")] Customer customer)
         {
-            if (ModelState.IsValid)
+            //throw new Exception();
+            try
             {
-                //db.Customers.Add(customer);
-                //db.SaveChanges();
-                custRepo.Insert(customer);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    //db.Customers.Add(customer);
+                    //db.SaveChanges();
+                    custRepo.Insert(customer);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.ToString();
             }
 
             return View(customer);
@@ -143,7 +151,7 @@ namespace MvcBootcamp.Web.Controllers
         public JsonResult CheckCustomerID(string CustomerID)
         {
             var cust = custRepo.Search(CustomerID);
-            bool isValid = cust != null? false : true;
+            bool isValid = cust != null ? false : true;
             return Json(isValid, JsonRequestBehavior.AllowGet);
         }
     }

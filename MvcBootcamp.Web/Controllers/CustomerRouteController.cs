@@ -7,18 +7,20 @@ using System.Web.Mvc;
 
 namespace MvcBootcamp.Web.Controllers
 {
+    [RoutePrefix("CustomerData")]
     public class CustomerRouteController : Controller
     {
         private CustomerRepository custRepo = new CustomerRepository();
 
         // GET: CustomersAjax
-        [Route("CustomerData/AllCustomer")]
+        //[Route("CustomerData/AllCustomer")]
+        [Route("AllCustomer")]
         public ActionResult Index()
         {
             return View(custRepo.GetAllData().Take(5));
         }
 
-        [Route("CustomerData/{id}")]
+        //[Route("CustomerData/{id}")]
         [Route("{id}")]
         public ActionResult Search(string id)
         {
