@@ -23,6 +23,11 @@ namespace MvcBootcamp.Web.Controllers
             custRepo = new CustomerRepository();
         }
 
+        public CustomersController(IEntityRepository<Customer, string> customerRepository)
+        {
+            this.custRepo = customerRepository;
+        }
+
         // GET: Customers
         [AllowAnonymous]
         public ActionResult Index()
